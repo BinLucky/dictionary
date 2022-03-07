@@ -1,0 +1,13 @@
+name: dictionary_repository
+description: Dart package which manages the dictionary repos.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+
+dependencies:
+  
+
+dev_dependencies:
+  

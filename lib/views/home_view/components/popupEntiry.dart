@@ -1,6 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../bloc/search_bloc.dart';
 
 Widget PopUpEntiryForm(BuildContext context) {
+  String entiryWord = "";
   return AlertDialog(
     content: Stack(
       overflow: Overflow.visible,
@@ -17,13 +23,16 @@ Widget PopUpEntiryForm(BuildContext context) {
               ),
             )),
         TextFormField(
+            onChanged: (value) => entiryWord = value,
             decoration: InputDecoration(
                 suffixIcon: IconButton(
-          icon: const Icon(Icons.done),
-          onPressed: () {
-            // fetch data and send to bloc
-          },
-        )))
+              icon: const Icon(Icons.done),
+              onPressed: () {
+                context
+                    .read<SearchBloc>()
+                    .add(SearchSubmitedEvent(word: entiryWord));
+              },
+            )))
       ],
     ),
   );

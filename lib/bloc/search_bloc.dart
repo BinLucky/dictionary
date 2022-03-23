@@ -13,14 +13,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<SearchSubmitedEvent>((event, emit) async {
       debugPrint("Search Submited");
       emit(SearchInProgressState());
-      /* Word respondWord = await repo.get(event.word);
-      debugPrint("Word Returned");
-      if (respondWord
-          .meanings!.first.definitions!.first.definition!.isNotEmpty) {
-        emit(SearchSuccessState());
-      } else {
-        emit(SearchFailedState());
-      }*/
+      await repo
+          .get(event.word)
+          .then((value) => emit(SearchSuccessState(searchedWord: value)));
     });
   }
 }

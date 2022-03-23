@@ -9,4 +9,7 @@ class SearchInProgressState extends SearchState {}
 
 class SearchFailedState extends SearchState {}
 
-class SearchSuccessState extends SearchState {}
+class SearchSuccessState extends SearchState {
+  final Word searchedWord;
+  SearchSuccessState({required this.searchedWord});
+}

@@ -20,17 +20,25 @@ class HomeBody extends StatelessWidget {
           );
         } else if (state is SearchSuccessState) {
           int wordLegn = state.searchedWord.meanings!.length;
-          return Container(
-            padding: EdgeInsets.all(15),
-            child: ListView.builder(
-                itemCount: wordLegn,
-                itemBuilder: (context, i) {
-                  return Card(
-                    child: Text(state
+          return CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                title: Text(state.searchedWord.IncomingWord.toString()),
+                backgroundColor: Colors.deepOrangeAccent.shade700,
+              ),
+              SliverList(
+                  delegate: SliverChildBuilderDelegate((context, i) {
+                return Card(
+                  margin: EdgeInsets.all(3),
+                  elevation: 10.0,
+                  child: ListTile(
+                    title: Text(state
                         .searchedWord.meanings![1].definitions![i].definition
                         .toString()),
-                  );
-                }),
+                  ),
+                );
+              }, childCount: wordLegn))
+            ],
           );
 
           /*return SingleChildScrollView(
@@ -63,3 +71,22 @@ class HomeBody extends StatelessWidget {
     );
   }
 }
+
+
+/*SingleChildScrollView(
+              child: Container(
+            padding: EdgeInsets.all(15),
+            child: ListView.builder(
+                itemCount: wordLegn,
+                itemBuilder: (context, i) {
+                  return Card(
+                    margin: EdgeInsets.all(3),
+                    elevation: 10.0,
+                    child: ListTile(
+                      title: Text(state
+                          .searchedWord.meanings![1].definitions![i].definition
+                          .toString()),
+                    ),
+                  );
+                }),
+          ));*/

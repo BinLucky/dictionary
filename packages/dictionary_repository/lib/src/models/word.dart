@@ -108,6 +108,9 @@ class Meaning {
             ? null
             : List<dynamic>.from(definitions!.map((x) => x.toJson())),
       };
+  //List<String> definationsList(){
+  //  return
+  //}
 }
 
 class Definition {
